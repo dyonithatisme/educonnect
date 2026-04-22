@@ -6,6 +6,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Badge from '@/components/ui/Badge'
+import Modal from '@/components/ui/Modal'
 import AnswerModal from './AnswerModal'
 import { ChevronDown } from 'lucide-react'
 import type { Question, Answer, Profile, QuestionCategory } from '@/types'
@@ -36,13 +37,21 @@ export default function AdminQuestionTable() {
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
   const [answerTarget, setAnswerTarget] = useState<QuestionRow | null>(null)
+  const [viewTarget, setViewTarget] = useState<QuestionRow | null>(null)
 
   const fetchQuestions = useCallback(async () => {
     setLoading(true)
     const params = new URLSearchParams({ category, status, page: String(page), limit: '20' })
     const res = await fetch(`/api/admin/questions?${params}`)
     const json = await res.json()
-    setQuestions(json.data ?? [])
+    // answers가 UNIQUE FK라 PostgREST가 객체로 반환 — 배열로 정규화
+    const normalized = (json.data ?? []).map((q: QuestionRow) => ({
+      ...q,
+      answers: q.answers
+        ? (Array.isArray(q.answers) ? q.answers : [q.answers])
+        : [],
+    }))
+    setQuestions(normalized)
     setTotal(json.pagination?.total ?? 0)
     setLoading(false)
   }, [category, status, page])
@@ -124,13 +133,21 @@ export default function AdminQuestionTable() {
                     {new Date(q.created_at).toLocaleString('ko-KR')}
                   </p>
                 </div>
-                {q.status === 'pending' && (
+                {q.status === 'pending' ? (
                   <button
                     onClick={() => setAnswerTarget(q)}
                     className="flex-shrink-0 rounded-xl px-3 py-1.5"
                     style={{ backgroundColor: 'var(--wds-bg-accent-primary)', color: '#ffffff', fontSize: '13px', fontWeight: 600 }}
                   >
                     답변
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setViewTarget(q)}
+                    className="flex-shrink-0 rounded-xl px-3 py-1.5"
+                    style={{ border: '1px solid rgba(112,115,124,0.22)', backgroundColor: 'white', color: 'var(--wds-fg-neutral-primary)', fontSize: '13px', fontWeight: 600 }}
+                  >
+                    보기
                   </button>
                 )}
               </div>
@@ -145,6 +162,38 @@ export default function AdminQuestionTable() {
           onClose={() => setAnswerTarget(null)}
           onAnswered={handleAnswered}
         />
+      )}
+
+      {viewTarget && (
+        <Modal open={!!viewTarget} onClose={() => setViewTarget(null)} title={CATEGORY_LABEL[viewTarget.category]}>
+          <div className="flex flex-col gap-4">
+            <div>
+              <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--wds-fg-neutral-assistive)', marginBottom: '4px' }}>
+                {viewTarget.profiles.name} · {viewTarget.profiles.group_number}분과
+              </p>
+              <p style={{ fontSize: '15px', color: 'var(--wds-fg-neutral-primary)', lineHeight: 1.6 }}>
+                {viewTarget.content}
+              </p>
+              <p style={{ fontSize: '12px', color: 'var(--wds-fg-neutral-assistive)', marginTop: '6px' }}>
+                {new Date(viewTarget.created_at).toLocaleString('ko-KR')}
+              </p>
+            </div>
+            {viewTarget.answers[0] && (
+              <div
+                className="rounded-xl p-4"
+                style={{ backgroundColor: 'var(--wds-bg-accent-subtle)', border: '1px solid rgba(112,115,124,0.22)' }}
+              >
+                <p style={{ fontSize: '12px', fontWeight: 600, color: 'var(--wds-fg-accent-primary)', marginBottom: '6px' }}>내 답변</p>
+                <p style={{ fontSize: '15px', color: 'var(--wds-fg-neutral-primary)', lineHeight: 1.6 }}>
+                  {viewTarget.answers[0].content}
+                </p>
+                <p style={{ fontSize: '12px', color: 'var(--wds-fg-neutral-assistive)', marginTop: '6px' }}>
+                  {new Date(viewTarget.answers[0].created_at).toLocaleString('ko-KR')}
+                </p>
+              </div>
+            )}
+          </div>
+        </Modal>
       )}
     </div>
   )
