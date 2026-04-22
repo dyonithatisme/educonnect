@@ -22,16 +22,36 @@ export default function QuestionsPage() {
   const [loading, setLoading] = useState(true)
 
   const fetchQuestions = useCallback(async (uid: string) => {
-    const { data } = await supabase
+    const { data: rawQuestions } = await supabase
       .from('questions')
-      .select('*, answers(*)')
+      .select('*')
       .eq('user_id', uid)
       .order('created_at', { ascending: false })
 
-    const qs = (data ?? []) as QuestionWithAnswer[]
+    const questions = rawQuestions ?? []
+
+    // answers는 별도 쿼리로 조회 (RLS 임베딩 이슈 우회)
+    const answeredIds = questions.filter(q => q.status === 'answered').map(q => q.id)
+    let answerMap: Record<string, Answer> = {}
+
+    if (answeredIds.length > 0) {
+      const { data: answers } = await supabase
+        .from('answers')
+        .select('*')
+        .in('question_id', answeredIds)
+
+      for (const a of answers ?? []) {
+        answerMap[a.question_id] = a
+      }
+    }
+
+    const qs: QuestionWithAnswer[] = questions.map(q => ({
+      ...q,
+      answers: answerMap[q.id] ? [answerMap[q.id]] : [],
+    }))
+
     setQuestions(qs)
 
-    // 미확인 답변: answered 상태이면서 마지막 세션 이후 답변된 것
     const lastSeen = localStorage.getItem('last_seen_at')
     const newAnswers = qs.filter(
       (q) => q.status === 'answered' && q.answers[0] &&
