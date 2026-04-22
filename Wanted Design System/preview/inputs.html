@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{margin:0;padding:24px;background:#fff;font-family:var(--wds-font-sans)}
+  .stack{display:flex;flex-direction:column;gap:12px;max-width:340px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .lbl{font:600 13px/1.3 var(--wds-font-sans);color:var(--wds-fg-neutral-primary)}
+  .input{height:48px;padding:0 14px;border:1px solid rgba(112,115,124,.28);border-radius:12px;background:#fff;font:500 15px var(--wds-font-sans);color:var(--wds-fg-neutral-primary);outline:none;transition:all 140ms}
+  .input:focus{border-color:#0066ff;box-shadow:0 0 0 2px #eaf2fe}
+  .input.err{border-color:#ff4242;box-shadow:0 0 0 2px #ffecec}
+  .hint{font:500 12px/1.334 var(--wds-font-sans);color:var(--wds-fg-neutral-assistive)}
+  .hint.err{color:#ff4242}
+  .row{display:flex;gap:8px;align-items:center}
+  .chk{width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(112,115,124,.4);display:inline-flex;align-items:center;justify-content:center;background:#fff}
+  .chk.on{background:#0066ff;border-color:#0066ff;color:#fff;font-size:12px;font-weight:700}
+  .ph{color:rgba(55,56,60,.45)}
+</style></head><body>
+  <div class="stack">
+    <div class="field">
+      <span class="lbl">이메일</span>
+      <input class="input" value="hello@wanted.co.kr">
+      <span class="hint">Default state</span>
+    </div>
+    <div class="field">
+      <span class="lbl">비밀번호</span>
+      <input class="input" placeholder="••••••••" type="password" autofocus>
+      <span class="hint">Focus ring = Blue 40, 2px offset</span>
+    </div>
+    <div class="field">
+      <span class="lbl">회사명</span>
+      <input class="input err" value="wnatedlab">
+      <span class="hint err">존재하지 않는 회사입니다</span>
+    </div>
+    <div class="row">
+      <div class="chk on">✓</div><span class="wds-body-2n">이용약관에 동의합니다</span>
+    </div>
+  </div>
+</body></html>

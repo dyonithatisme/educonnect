@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>Wanted — UI Kit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <style>
+    html, body { margin: 0; padding: 0; background: #fff; }
+    #root { min-height: 100vh; }
+    @keyframes wds-fade-in { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes wds-slide-up { from { transform: translateY(24px); opacity: 0 } to { transform: none; opacity: 1 } }
+    * { box-sizing: border-box; }
+    button { font-family: inherit; }
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="Layout.jsx"></script>
+<script type="text/babel" src="JobViews.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const JOBS = [
+  { id: 1, title: "Senior Product Designer", company: "원티드랩", location: "서울 강남구", years: "5–8년", reward: 500, category: "Design", deadline: 3,
+    cover: "linear-gradient(135deg, #0066ff 0%, #9747ff 55%, #ff4242 100%)" },
+  { id: 2, title: "Frontend Engineer, Design System", company: "토스", location: "서울 역삼", years: "3–5년", reward: 300, category: "Development", deadline: 7,
+    cover: "linear-gradient(135deg, #eaf2fe 0%, #d6e4ff 100%)" },
+  { id: 3, title: "Product Manager, Growth", company: "당근", location: "서울 서초", years: "3년+", reward: 200, category: "Product", deadline: 5,
+    cover: "linear-gradient(135deg, #e6f9ed 0%, #b2edc4 100%)" },
+  { id: 4, title: "Motion Designer", company: "네이버", location: "분당", years: "3년+", reward: 200, category: "Design", deadline: 12,
+    cover: "linear-gradient(135deg, #f0ecfe 0%, #d6e4ff 100%)" },
+  { id: 5, title: "iOS Engineer", company: "쿠팡", location: "서울 송파", years: "5년+", reward: 400, category: "Development", deadline: 9,
+    cover: "linear-gradient(135deg, #ffecec 0%, #fff3e6 100%)" },
+  { id: 6, title: "Brand Designer", company: "라인", location: "판교", years: "3–5년", reward: 250, category: "Design", deadline: 4,
+    cover: "linear-gradient(135deg, #fff3e6 0%, #ffecec 100%)" },
+  { id: 7, title: "Data Scientist", company: "SK텔레콤", location: "서울 을지로", years: "3년+", reward: 350, category: "Data", deadline: 14,
+    cover: "linear-gradient(135deg, #c8ccd1 0%, #e4e6ea 100%)" },
+  { id: 8, title: "UX Researcher", company: "카카오", location: "판교", years: "5년+", reward: 300, category: "Design", deadline: 6,
+    cover: "linear-gradient(135deg, #e6f9ed 0%, #eaf2fe 100%)" },
+];
+
+function App() {
+  const [route, setRoute] = useState("jobs");
+  const [filters, setFilters] = useState(["designer"]);
+  const [selected, setSelected] = useState(null);
+  const [bookmarks, setBookmarks] = useState([1, 6]);
+  const [applied, setApplied] = useState([]);
+
+  const toggleFilter = id => setFilters(f => f.includes(id) ? f.filter(x => x !== id) : [...f, id]);
+  const toggleBookmark = id => setBookmarks(b => b.includes(id) ? b.filter(x => x !== id) : [...b, id]);
+  const apply = id => { setApplied(a => a.includes(id) ? a : [...a, id]); };
+
+  return (
+    <div>
+      <TopNav route={route} onNavigate={setRoute} unread={applied.length + 2} />
+
+      {/* Hero */}
+      <section style={{ padding: "64px 48px 24px", maxWidth: 1280, margin: "0 auto" }}>
+        <div style={{ font: "500 12px/1 var(--wds-font-sans)", color: "rgba(55,56,60,.61)", letterSpacing: ".025em", textTransform: "uppercase", marginBottom: 12 }}>
+          오늘의 추천
+        </div>
+        <h1 style={{ font: "700 40px/1.3 var(--wds-font-sans)", letterSpacing: "-.0282em", margin: "0 0 8px", color: "#17181a" }}>
+          당신에게 딱 맞는<br/>커리어를 탐색해보세요
+        </h1>
+        <p style={{ font: "500 16px/1.625 var(--wds-font-sans)", color: "rgba(55,56,60,.61)", letterSpacing: ".0057em", margin: 0, maxWidth: 520 }}>
+          11,204개의 채용 공고가 매칭을 기다리고 있어요.
+        </p>
+
+        <FilterBar filters={filters} onToggle={toggleFilter} />
+      </section>
+
+      {/* Job grid */}
+      <section style={{ padding: "0 48px 96px", maxWidth: 1280, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
+          {JOBS.map(job => (
+            <JobCard key={job.id} job={job}
+              bookmarked={bookmarks.includes(job.id)}
+              onBookmark={() => toggleBookmark(job.id)}
+              onClick={() => setSelected(job)} />
+          ))}
+        </div>
+      </section>
+
+      {/* Stats strip */}
+      <section style={{ background: "#f7f7f8", padding: "64px 48px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+          {[
+            ["11,204", "채용 공고"],
+            ["3.2M+", "가입 회원"],
+            ["480만원", "평균 보상금"],
+            ["96%", "합격 통지율"],
+          ].map(([num, label]) => (
+            <div key={label}>
+              <div style={{ font: "700 32px/1.375 var(--wds-font-sans)", letterSpacing: "-.0253em", color: "#0066ff" }}>{num}</div>
+              <div style={{ font: "500 14px/1.429 var(--wds-font-sans)", color: "rgba(55,56,60,.61)", marginTop: 4, letterSpacing: ".015em" }}>{label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{ padding: "40px 48px 60px", borderTop: "1px solid rgba(112,115,124,.14)" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <img src="../../assets/logos/wanted-logotype.svg" style={{ height: 14, opacity: .4 }} />
+          <div style={{ font: "500 12px/1 var(--wds-font-sans)", color: "rgba(55,56,60,.45)" }}>
+            © Wanted Lab, Inc. Design System port · CC BY 4.0
+          </div>
+        </div>
+      </footer>
+
+      {selected && (
+        <JobDetail
+          job={selected}
+          onClose={() => setSelected(null)}
+          onApply={() => apply(selected.id)}
+          applied={applied.includes(selected.id)}
+        />
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

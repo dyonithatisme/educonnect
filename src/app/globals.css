@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+
+:root {
+  --wds-common-100: #ffffff;
+  --wds-common-0: #000000;
+
+  --wds-neutral-99: #fafafa;
+  --wds-neutral-95: #f2f2f3;
+  --wds-neutral-90: #e6e6e7;
+  --wds-neutral-80: #c9cacc;
+  --wds-neutral-60: #8e9197;
+  --wds-neutral-50: #72757a;
+  --wds-neutral-40: #575a5f;
+  --wds-neutral-30: #3d4046;
+  --wds-neutral-20: #292a2e;
+  --wds-neutral-10: #17181a;
+
+  --wds-cool-99: #fcfcfd;
+  --wds-cool-98: #f9fafb;
+  --wds-cool-97: #f7f7f8;
+  --wds-cool-96: #f5f6f7;
+  --wds-cool-95: #f1f2f4;
+  --wds-cool-90: #e4e6ea;
+  --wds-cool-80: #c8ccd1;
+  --wds-cool-70: #aeb0b6;
+  --wds-cool-60: #989ba2;
+  --wds-cool-50: #80838a;
+  --wds-cool-40: #64676d;
+  --wds-cool-30: #484a4f;
+  --wds-cool-25: #3b3d42;
+  --wds-cool-22: #35363a;
+  --wds-cool-20: #2e2f33;
+  --wds-cool-17: #272a2e;
+  --wds-cool-15: #222326;
+  --wds-cool-10: #17171a;
+  --wds-cool-5: #0c0d0f;
+
+  --wds-blue-99: #f4f8ff;
+  --wds-blue-95: #eaf2ff;
+  --wds-blue-40: #0066ff;
+  --wds-blue-30: #005eeb;
+  --wds-blue-20: #004bc0;
+
+  --wds-green-60: #00bf40;
+  --wds-red-50: #ff4242;
+  --wds-orange-40: #e25d00;
+  --wds-purple-50: #9747ff;
+
+  /* Semantic tokens */
+  --wds-fg-neutral-primary: rgba(23,23,25,1);
+  --wds-fg-neutral-secondary: rgba(46,47,51,0.88);
+  --wds-fg-neutral-assistive: rgba(55,56,60,0.61);
+  --wds-fg-neutral-subtle: rgba(55,56,60,0.28);
+  --wds-fg-neutral-disabled: rgba(112,115,124,0.22);
+  --wds-fg-neutral-inverse: #ffffff;
+  --wds-fg-accent-primary: #0066ff;
+  --wds-fg-accent-hover: #005eeb;
+  --wds-fg-accent-pressed: #004bc0;
+  --wds-fg-status-positive: #00bf40;
+  --wds-fg-status-negative: #ff4242;
+  --wds-fg-status-caution: #e25d00;
+  --wds-fg-status-informative: #0066ff;
+
+  --wds-bg-page: #ffffff;
+  --wds-bg-elevated: #ffffff;
+  --wds-bg-neutral-subtle: #f7f7f8;
+  --wds-bg-neutral-subtler: #f9fafb;
+  --wds-bg-neutral-strong: #f1f2f4;
+  --wds-bg-accent-primary: #0066ff;
+  --wds-bg-accent-subtle: #eaf2fe;
+  --wds-bg-accent-subtler: #f4f8ff;
+  --wds-bg-overlay-scrim: rgba(0,0,0,0.56);
+  --wds-bg-status-positive: #00bf40;
+  --wds-bg-status-positive-subtle: #e6f9ed;
+  --wds-bg-status-negative: #ff4242;
+  --wds-bg-status-negative-subtle: #ffecec;
+
+  --wds-line-subtle: rgba(112,115,124,0.22);
+  --wds-line-moderate: rgba(112,115,124,0.40);
+  --wds-line-strong: rgba(112,115,124,0.88);
+  --wds-line-solid-hairline: #dbdcdf;
+  --wds-line-accent: #0066ff;
+
+  --wds-font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
+  --wds-font-brand: "Wanted Sans Variable", "Wanted Sans", "Pretendard", sans-serif;
+  --wds-font-mono: "SF Mono", ui-monospace, "JetBrains Mono", "Menlo", "Consolas", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--wds-font-sans);
+  color: var(--wds-fg-neutral-primary);
+  background-color: var(--wds-bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+input,
+textarea,
+select {
+  font-family: var(--wds-font-sans);
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-04-22T06:58:43.789Z",
+    "errorType": "unknown",
+    "category": "unknown",
+    "severity": "low",
+    "agentId": "ab0fab96dff0410bd",
+    "agentType": "bkit:gap-detector",
+    "message": ""
+  },
+  {
+    "timestamp": "2026-04-22T06:58:44.606Z",
+    "errorType": "unknown",
+    "category": "unknown",
+    "severity": "low",
+    "agentId": null,
+    "agentType": null,
+    "message": ""
+  }
+]

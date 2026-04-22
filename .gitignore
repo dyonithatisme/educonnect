@@ -1,0 +1,12 @@
+.env.local
+.env*.local
+node_modules/
+.next/
+out/
+*.pem
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+supabase-setup.sql
+
+.vercel

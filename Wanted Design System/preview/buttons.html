@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{margin:0;padding:24px;background:#fff;font-family:var(--wds-font-sans)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .row:last-child{margin-bottom:0}
+  .b{border:none;cursor:pointer;font-family:inherit;font-weight:600;letter-spacing:0.0145em;transition:background 140ms cubic-bezier(.4,0,.2,1)}
+  .b-md{height:44px;padding:0 18px;font-size:15px;border-radius:10px}
+  .b-sm{height:36px;padding:0 14px;font-size:14px;border-radius:8px}
+  .b-lg{height:52px;padding:0 22px;font-size:16px;border-radius:12px}
+  .p{background:#0066ff;color:#fff}
+  .p:hover{background:#005eeb}
+  .sec{background:#eaf2fe;color:#0066ff}
+  .line{background:#fff;color:#17181a;box-shadow:inset 0 0 0 1px rgba(112,115,124,.28)}
+  .ghost{background:transparent;color:#17181a}
+  .dis{background:rgba(112,115,124,.11);color:rgba(55,56,60,.28);cursor:not-allowed}
+  .danger{background:#ff4242;color:#fff}
+  .lbl{font:600 11px/1 var(--wds-font-sans);letter-spacing:.04em;text-transform:uppercase;color:var(--wds-fg-neutral-assistive);min-width:80px}
+</style></head><body>
+  <div class="row"><span class="lbl">Primary</span><button class="b b-sm p">지원하기</button><button class="b b-md p">지원하기</button><button class="b b-lg p">지원하기</button><button class="b b-md p" disabled style="opacity:.4">Hover</button></div>
+  <div class="row"><span class="lbl">Secondary</span><button class="b b-md sec">컴포넌트 보기</button><button class="b b-md line">북마크</button><button class="b b-md ghost">공유</button><button class="b b-md dis">Disabled</button></div>
+  <div class="row"><span class="lbl">Status</span><button class="b b-md danger">삭제</button></div>
+</body></html>

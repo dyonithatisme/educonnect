@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Wanted Design System — Colors & Type
+   Source: Wanted Design System (Community) Figma file
+   Fonts: Pretendard JP (primary), Wanted Sans (brand/marketing), SF Mono (code)
+   ========================================================================== */
+
+/* --- Local Pretendard (user-uploaded OTFs) --- */
+@font-face { font-family: "Pretendard"; font-weight: 100; font-style: normal; font-display: swap; src: url("fonts/Pretendard-Thin.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 200; font-style: normal; font-display: swap; src: url("fonts/Pretendard-ExtraLight.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 300; font-style: normal; font-display: swap; src: url("fonts/Pretendard-Light.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/Pretendard-Regular.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 500; font-style: normal; font-display: swap; src: url("fonts/Pretendard-Medium.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 600; font-style: normal; font-display: swap; src: url("fonts/Pretendard-SemiBold.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/Pretendard-Bold.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 800; font-style: normal; font-display: swap; src: url("fonts/Pretendard-ExtraBold.otf") format("opentype"); }
+@font-face { font-family: "Pretendard"; font-weight: 900; font-style: normal; font-display: swap; src: url("fonts/Pretendard-Black.otf") format("opentype"); }
+/* Wanted Sans — official CDN (no local upload) */
+@import url("https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css");
+
+:root {
+  /* ======================= ATOMIC COLOR PALETTE =========================== */
+  /* --- Common --- */
+  --wds-common-100: #ffffff;
+  --wds-common-0:   #000000;
+
+  /* --- Neutral (warm gray; primary text system) --- */
+  --wds-neutral-99: #fafafa;
+  --wds-neutral-95: #f2f2f3;
+  --wds-neutral-90: #e6e6e7;
+  --wds-neutral-80: #c9cacc;
+  --wds-neutral-70: #acaeb1;
+  --wds-neutral-60: #8e9197;
+  --wds-neutral-50: #72757a;
+  --wds-neutral-40: #575a5f;
+  --wds-neutral-30: #3d4046;
+  --wds-neutral-22: #2e2f33;
+  --wds-neutral-20: #292a2e;
+  --wds-neutral-15: #1f2024;
+  --wds-neutral-10: #17181a;
+  --wds-neutral-5:  #0c0d0f;
+  --wds-neutral-0:  #000000;
+
+  /* --- Cool Neutral (dominant UI gray) --- */
+  --wds-cool-99: #fcfcfd;
+  --wds-cool-98: #f9fafb;
+  --wds-cool-97: #f7f7f8;
+  --wds-cool-96: #f5f6f7;
+  --wds-cool-95: #f1f2f4;
+  --wds-cool-90: #e4e6ea;
+  --wds-cool-80: #c8ccd1;
+  --wds-cool-70: #aeb0b6;
+  --wds-cool-60: #989ba2;
+  --wds-cool-50: #80838a;
+  --wds-cool-40: #64676d;
+  --wds-cool-30: #484a4f;
+  --wds-cool-25: #3b3d42;
+  --wds-cool-23: #37383c;
+  --wds-cool-22: #35363a;
+  --wds-cool-20: #2e2f33;
+  --wds-cool-17: #272a2e;
+  --wds-cool-15: #222326;
+  --wds-cool-10: #17171a;
+  --wds-cool-7:  #101114;
+  --wds-cool-5:  #0c0d0f;
+  --wds-cool-0:  #000000;
+
+  /* --- Blue (primary brand action) --- */
+  --wds-blue-99: #f4f8ff;
+  --wds-blue-95: #eaf2ff;
+  --wds-blue-90: #d6e4ff;
+  --wds-blue-80: #adc8ff;
+  --wds-blue-70: #83acff;
+  --wds-blue-65: #6b9cff;
+  --wds-blue-60: #5591ff;
+  --wds-blue-55: #4086ff;
+  --wds-blue-50: #3385ff;
+  --wds-blue-45: #1a78ff;
+  --wds-blue-40: #0066ff;   /* Primary */
+  --wds-blue-30: #005eeb;
+  --wds-blue-20: #004bc0;
+  --wds-blue-10: #00307d;
+  --wds-blue-0:  #001b45;
+
+  /* --- Red (danger) --- */
+  --wds-red-99: #fff5f5;
+  --wds-red-95: #ffe5e5;
+  --wds-red-90: #ffcfcf;
+  --wds-red-80: #ff9e9e;
+  --wds-red-70: #ff7070;
+  --wds-red-60: #ff5252;
+  --wds-red-50: #ff4242;   /* Semantic: negative */
+  --wds-red-40: #e11414;
+  --wds-red-30: #b30d0d;
+  --wds-red-20: #820909;
+  --wds-red-10: #500404;
+  --wds-red-0:  #250000;
+
+  /* --- Green (positive) --- */
+  --wds-green-99: #f1fdf5;
+  --wds-green-95: #d7f7e1;
+  --wds-green-90: #b2edc4;
+  --wds-green-80: #6cdb93;
+  --wds-green-70: #33c86b;
+  --wds-green-60: #00bf40;  /* Semantic: positive */
+  --wds-green-50: #00a538;
+  --wds-green-40: #008a2e;
+  --wds-green-30: #006a22;
+  --wds-green-20: #004815;
+  --wds-green-10: #002a0b;
+  --wds-green-0:  #001204;
+
+  /* --- Orange / Lime / Yellow / Cyan / Light Blue / Violet / Purple / Pink --- */
+  --wds-orange-40: #e25d00;
+  --wds-lime-37:   #4a7800;
+  --wds-yellow-40: #c99400;
+  --wds-cyan-50:   #0098b2;
+  --wds-lightblue-50: #00a6ff;
+  --wds-violet-50: #7b66ff;
+  --wds-violet-45: #6541f2;
+  --wds-purple-50: #9747ff;  /* Brand accent, used on strokes */
+  --wds-pink-46:   #f04192;
+
+  /* ======================= SEMANTIC TOKENS (LIGHT) ======================== */
+  /* Foregrounds */
+  --wds-fg-neutral-primary:          rgba(23, 23, 25, 1);      /* neutral-10 */
+  --wds-fg-neutral-secondary:        rgba(46, 47, 51, 0.88);   /* neutral-20 @ 88 */
+  --wds-fg-neutral-assistive:        rgba(55, 56, 60, 0.61);   /* secondary */
+  --wds-fg-neutral-subtle:           rgba(55, 56, 60, 0.28);
+  --wds-fg-neutral-disabled:         rgba(112, 115, 124, 0.22);
+  --wds-fg-neutral-inverse:          #ffffff;
+
+  --wds-fg-accent-primary:           var(--wds-blue-40);
+  --wds-fg-accent-hover:             var(--wds-blue-30);
+  --wds-fg-accent-pressed:           var(--wds-blue-20);
+
+  --wds-fg-status-positive:          var(--wds-green-60);
+  --wds-fg-status-negative:          var(--wds-red-50);
+  --wds-fg-status-caution:           var(--wds-orange-40);
+  --wds-fg-status-informative:       var(--wds-blue-40);
+
+  /* Backgrounds */
+  --wds-bg-page:                     #ffffff;
+  --wds-bg-elevated:                 #ffffff;
+  --wds-bg-neutral-subtle:           var(--wds-cool-97);
+  --wds-bg-neutral-subtler:          var(--wds-cool-98);
+  --wds-bg-neutral-strong:           var(--wds-cool-95);
+  --wds-bg-accent-primary:           var(--wds-blue-40);
+  --wds-bg-accent-subtle:            #eaf2fe;       /* 234,242,254 — used everywhere */
+  --wds-bg-accent-subtler:           #f4f8ff;
+  --wds-bg-accent-violet-subtle:     #f0ecfe;       /* 240,236,254 */
+  --wds-bg-accent-pressed:           var(--wds-blue-30);
+
+  --wds-bg-status-positive:          var(--wds-green-60);
+  --wds-bg-status-positive-subtle:   #e6f9ed;
+  --wds-bg-status-negative:          var(--wds-red-50);
+  --wds-bg-status-negative-subtle:   #ffecec;
+
+  --wds-bg-overlay-scrim:            rgba(0, 0, 0, 0.56);
+
+  /* Lines / strokes */
+  --wds-line-subtle:                 rgba(112, 115, 124, 0.22);  /* the sig stroke */
+  --wds-line-moderate:               rgba(112, 115, 124, 0.40);
+  --wds-line-strong:                 rgba(112, 115, 124, 0.88);
+  --wds-line-solid-hairline:         #dbdcdf;
+  --wds-line-accent:                 var(--wds-blue-40);
+
+  /* Shadow tokens (the three signature shadows) */
+  --wds-shadow-emphasize:            0 1px 4px 0 rgba(23,23,23,0.06), 0 6px 12px -2px rgba(23,23,23,0.07);
+  --wds-shadow-normal:               0 1px 4px 0 rgba(23,23,23,0.06), 0 2px 8px 0 rgba(23,23,23,0.07);
+  --wds-shadow-strong:               0 2px 10px 0 rgba(23,23,23,0.10), 0 12px 24px -4px rgba(23,23,23,0.12);
+  --wds-shadow-inset-hairline:       inset 0 0 0 1px rgba(112,115,124,0.22);
+
+  /* Radii */
+  --wds-radius-0:   0px;
+  --wds-radius-xs:  4px;
+  --wds-radius-sm:  6px;
+  --wds-radius-md:  8px;    /* buttons small */
+  --wds-radius-lg:  10px;   /* buttons medium */
+  --wds-radius-xl:  12px;   /* inputs */
+  --wds-radius-2xl: 16px;   /* cards */
+  --wds-radius-3xl: 24px;   /* hero cards */
+  --wds-radius-4xl: 32px;   /* sections */
+  --wds-radius-full: 9999px;
+
+  /* Spacing (4px base grid, used at 2/4/8/12/16/20/24/32/40/48/64/96/128) */
+  --wds-space-0:   0px;
+  --wds-space-2:   2px;
+  --wds-space-4:   4px;
+  --wds-space-6:   6px;
+  --wds-space-8:   8px;
+  --wds-space-10:  10px;
+  --wds-space-12:  12px;
+  --wds-space-16:  16px;
+  --wds-space-20:  20px;
+  --wds-space-24:  24px;
+  --wds-space-32:  32px;
+  --wds-space-40:  40px;
+  --wds-space-48:  48px;
+  --wds-space-64:  64px;
+  --wds-space-96:  96px;
+  --wds-space-128: 128px;
+
+  /* ======================= TYPOGRAPHY ===================================== */
+  /* Families */
+  --wds-font-sans:       "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
+  --wds-font-brand:      "Wanted Sans Variable", "Wanted Sans", "Pretendard", sans-serif;
+  --wds-font-mono:       "SF Mono", ui-monospace, "JetBrains Mono", "Menlo", "Consolas", monospace;
+
+  /* 7-tier scale / 18 sub-tiers, from Figma Typography spec */
+  /* Display */
+  --wds-text-display-1-size: 56px;  --wds-text-display-1-lh: 1.25;    --wds-text-display-1-ls: -0.017em;  --wds-text-display-1-weight: 700;
+  --wds-text-display-2-size: 40px;  --wds-text-display-2-lh: 1.3;     --wds-text-display-2-ls: -0.0282em; --wds-text-display-2-weight: 700;
+  --wds-text-display-3-size: 36px;  --wds-text-display-3-lh: 1.334;   --wds-text-display-3-ls: -0.027em;  --wds-text-display-3-weight: 700;
+  /* Title */
+  --wds-text-title-1-size:   32px;  --wds-text-title-1-lh:   1.375;   --wds-text-title-1-ls:   -0.0253em; --wds-text-title-1-weight: 700;
+  --wds-text-title-2-size:   28px;  --wds-text-title-2-lh:   1.358;   --wds-text-title-2-ls:   -0.0236em; --wds-text-title-2-weight: 700;
+  --wds-text-title-3-size:   24px;  --wds-text-title-3-lh:   1.334;   --wds-text-title-3-ls:   -0.023em;  --wds-text-title-3-weight: 700;
+  /* Heading */
+  --wds-text-heading-1-size: 22px;  --wds-text-heading-1-lh: 1.364;   --wds-text-heading-1-ls: -0.0194em; --wds-text-heading-1-weight: 700;
+  --wds-text-heading-2-size: 20px;  --wds-text-heading-2-lh: 1.4;     --wds-text-heading-2-ls: -0.012em;  --wds-text-heading-2-weight: 700;
+  /* Headline */
+  --wds-text-headline-1-size: 18px; --wds-text-headline-1-lh: 1.445;  --wds-text-headline-1-ls: -0.002em; --wds-text-headline-1-weight: 600;
+  --wds-text-headline-2-size: 17px; --wds-text-headline-2-lh: 1.412;  --wds-text-headline-2-ls: 0em;      --wds-text-headline-2-weight: 700;
+  /* Body */
+  --wds-text-body-1n-size: 16px;    --wds-text-body-1n-lh: 1.5;       --wds-text-body-1n-ls: 0.0057em;    --wds-text-body-1n-weight: 500;
+  --wds-text-body-1r-size: 16px;    --wds-text-body-1r-lh: 1.625;     --wds-text-body-1r-ls: 0.0057em;    --wds-text-body-1r-weight: 500;
+  --wds-text-body-2n-size: 15px;    --wds-text-body-2n-lh: 1.467;     --wds-text-body-2n-ls: 0.0096em;    --wds-text-body-2n-weight: 500;
+  --wds-text-body-2r-size: 15px;    --wds-text-body-2r-lh: 1.6;       --wds-text-body-2r-ls: 0.0096em;    --wds-text-body-2r-weight: 500;
+  /* Label */
+  --wds-text-label-1n-size: 14px;   --wds-text-label-1n-lh: 1.429;    --wds-text-label-1n-ls: 0.0145em;   --wds-text-label-1n-weight: 600;
+  --wds-text-label-1r-size: 14px;   --wds-text-label-1r-lh: 1.571;    --wds-text-label-1r-ls: 0.0145em;   --wds-text-label-1r-weight: 500;
+  --wds-text-label-2-size:  13px;   --wds-text-label-2-lh:  1.385;    --wds-text-label-2-ls:  0.0194em;   --wds-text-label-2-weight:  600;
+  /* Caption */
+  --wds-text-caption-1-size: 12px;  --wds-text-caption-1-lh: 1.334;   --wds-text-caption-1-ls: 0.0252em;  --wds-text-caption-1-weight: 600;
+  --wds-text-caption-2-size: 11px;  --wds-text-caption-2-lh: 1.273;   --wds-text-caption-2-ls: 0.0311em;  --wds-text-caption-2-weight: 700;
+
+  /* Motion */
+  --wds-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --wds-ease-enter:    cubic-bezier(0.0, 0, 0.2, 1);
+  --wds-ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --wds-dur-fast:      120ms;
+  --wds-dur-base:      180ms;
+  --wds-dur-slow:      260ms;
+}
+
+/* ======================= BASE / SEMANTIC ELEMENT STYLES =================== */
+html, body {
+  font-family: var(--wds-font-sans);
+  color: var(--wds-fg-neutral-primary);
+  background: var(--wds-bg-page);
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1 { font-size: var(--wds-text-title-1-size); line-height: var(--wds-text-title-1-lh); letter-spacing: var(--wds-text-title-1-ls); font-weight: var(--wds-text-title-1-weight); }
+h2 { font-size: var(--wds-text-title-3-size); line-height: var(--wds-text-title-3-lh); letter-spacing: var(--wds-text-title-3-ls); font-weight: 700; }
+h3 { font-size: var(--wds-text-heading-1-size); line-height: var(--wds-text-heading-1-lh); letter-spacing: var(--wds-text-heading-1-ls); font-weight: 700; }
+h4 { font-size: var(--wds-text-headline-1-size); line-height: var(--wds-text-headline-1-lh); letter-spacing: var(--wds-text-headline-1-ls); font-weight: 600; }
+p  { font-size: var(--wds-text-body-1r-size);  line-height: var(--wds-text-body-1r-lh);  letter-spacing: var(--wds-text-body-1r-ls);  font-weight: 500; color: var(--wds-fg-neutral-secondary); }
+small, caption, .wds-caption { font-size: var(--wds-text-caption-1-size); line-height: var(--wds-text-caption-1-lh); letter-spacing: var(--wds-text-caption-1-ls); font-weight: 500; color: var(--wds-fg-neutral-assistive); }
+code, pre, kbd { font-family: var(--wds-font-mono); font-size: 13px; }
+a  { color: var(--wds-fg-accent-primary); text-decoration: none; }
+a:hover { color: var(--wds-fg-accent-hover); }
+
+/* Utility type classes */
+.wds-display-1 { font-size: 56px; line-height: 1.25; letter-spacing: -0.017em; font-weight: 700; }
+.wds-display-2 { font-size: 40px; line-height: 1.3; letter-spacing: -0.0282em; font-weight: 700; }
+.wds-display-3 { font-size: 36px; line-height: 1.334; letter-spacing: -0.027em; font-weight: 700; }
+.wds-title-1   { font-size: 32px; line-height: 1.375; letter-spacing: -0.0253em; font-weight: 700; }
+.wds-title-2   { font-size: 28px; line-height: 1.358; letter-spacing: -0.0236em; font-weight: 700; }
+.wds-title-3   { font-size: 24px; line-height: 1.334; letter-spacing: -0.023em; font-weight: 700; }
+.wds-heading-1 { font-size: 22px; line-height: 1.364; letter-spacing: -0.0194em; font-weight: 700; }
+.wds-heading-2 { font-size: 20px; line-height: 1.4;   letter-spacing: -0.012em; font-weight: 700; }
+.wds-headline-1{ font-size: 18px; line-height: 1.445; letter-spacing: -0.002em; font-weight: 600; }
+.wds-headline-2{ font-size: 17px; line-height: 1.412; letter-spacing: 0; font-weight: 700; }
+.wds-body-1n   { font-size: 16px; line-height: 1.5;   letter-spacing: 0.0057em; font-weight: 500; }
+.wds-body-1r   { font-size: 16px; line-height: 1.625; letter-spacing: 0.0057em; font-weight: 500; }
+.wds-body-2n   { font-size: 15px; line-height: 1.467; letter-spacing: 0.0096em; font-weight: 500; }
+.wds-body-2r   { font-size: 15px; line-height: 1.6;   letter-spacing: 0.0096em; font-weight: 500; }
+.wds-label-1n  { font-size: 14px; line-height: 1.429; letter-spacing: 0.0145em; font-weight: 600; }
+.wds-label-1r  { font-size: 14px; line-height: 1.571; letter-spacing: 0.0145em; font-weight: 500; }
+.wds-label-2   { font-size: 13px; line-height: 1.385; letter-spacing: 0.0194em; font-weight: 600; }
+.wds-caption-1 { font-size: 12px; line-height: 1.334; letter-spacing: 0.0252em; font-weight: 600; }
+.wds-caption-2 { font-size: 11px; line-height: 1.273; letter-spacing: 0.0311em; font-weight: 700; }
